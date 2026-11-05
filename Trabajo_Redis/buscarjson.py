@@ -1,9 +1,0 @@
-import redis
-
-conexionRedis = redis.ConnectionPool(host='localhost', port=6379, db=0)
-baseDatosRedis = redis.Redis(connection_pool=conexionRedis)
-
-res1 = baseDatosRedis.json().get("usuarios_array", '$[?(@.edad > 50)]')
-res2 = baseDatosRedis.json().get("usuarios_array", '$[?(@.nombre == "Pepe")]')
-
-conexionRedis.close()

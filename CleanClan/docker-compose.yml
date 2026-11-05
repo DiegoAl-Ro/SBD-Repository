@@ -53,6 +53,7 @@ services:
     restart: always
     ports:
       - "6379:6379"
+      - "8001:8001"
     volumes:
       - redis_data:/data
 
@@ -60,3 +61,4 @@ volumes:
   mysql_data:
   postgres_data:
   mariadb_data:
+  redis_data:
