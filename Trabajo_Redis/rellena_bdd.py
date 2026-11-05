@@ -79,7 +79,7 @@ def poblar_motor(config, nombre_motor, es_postgres=False):
         conn.commit()
         cursor.close()
         conn.close()
-        print(f"[✓] {nombre_motor} rellenado con éxito.")
+        print(f"{nombre_motor} rellenado con éxito.")
     except Exception as e:
         print(f"Error llenando {nombre_motor}: {e}")
 
