@@ -5,7 +5,6 @@ services:
   # 1. Para MySQL
   mysql_cleanclan:
     image: mysql:8.0
-    container_name: mysql_cleanclan
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -20,7 +19,6 @@ services:
   # 2. Para PostgreSQL
   postgres_cleanclan:
     image: postgres:15
-    container_name: postgres_cleanclan
     restart: always
     environment:
       POSTGRES_DB: cleanclan_db
@@ -34,7 +32,6 @@ services:
   # 3. Para MariaDB
   mariadb_cleanclan:
     image: mariadb:10.11
-    container_name: mariadb_cleanclan
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: rootpassword
@@ -49,7 +46,6 @@ services:
   # 4. Para Redis
   redis_cleanclan:
     image: redis/redis-stack:latest
-    container_name: redis_cleanclan
     restart: always
     ports:
       - "6379:6379"

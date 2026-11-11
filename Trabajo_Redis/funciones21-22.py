@@ -55,6 +55,6 @@ try:
     conn_pg.commit()
     cursor_pg.close()
     conn_pg.close()
-    print(f"-> Efecto: Se exportaron {insertados} registros desde Redis hacia la tabla 'sensores_iot' en PostgreSQL.\n")
+    print(f"Se han exportado {insertados} registros desde Redis hacia la tabla 'sensores_iot' en PostgreSQL.\n")
 except Exception as e:
     print(f"Error en Ejercicio 22: {e}\n")
