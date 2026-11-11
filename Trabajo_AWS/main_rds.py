@@ -1,7 +1,7 @@
 import gestion_rds as rds
 
 def main():
-    print("-- EJECUTANDO ESTRCUTURA RDS PARA AWS --")
+    print("\n-- EJECUTANDO ESTRCUTURA RDS PARA AWS --\n")
 
     print("Paso 1: Creando Base de Datos en RDS...")
     rds.crear_bd()
@@ -10,16 +10,15 @@ def main():
     rds.crear_tablas()
     
     print("\nPaso 3: Insertando Registros de Prueba...")
-    rds.poblar_datos_iniciales()
+    rds.poblar_datos_prueba()
     
     print("\nEJECUTANDO CONSULTA 1: Empleados Registrados")
-    print(rds.consulta_1_empleados_json())
+    print(rds.consulta_empleados())
     
     print("\nEJECUTANDO CONSULTA 2: Lecturas de Sensores Críticos")
-    print(rds.consulta_2_sensores_criticos_json())
-
+    print(rds.consulta_sensores_criticos())
     print("\nEJECUTANDO CONSULTA 3: Infraestructura y Contenedores")
-    print(rds.consulta_3_infraestructura_completa_json())
+    print(rds.consulta_infraestructura_completa())
 
     print("\nPROCESO TERMINADO")
 
