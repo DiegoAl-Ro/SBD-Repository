@@ -1,3 +1,4 @@
+# Imports necesarios
 import os
 import json
 from decimal import Decimal
@@ -13,22 +14,23 @@ load_dotenv
 dynamodb_resource = boto3.resource('dynamodb')
 dynamodb_client = boto3.client('dynamodb')
 
-# Nombres de las 3 tablas
+# Creamos variables para las 3 tablas, por si debemos cambiarles el nombre en el futuro
 TABLA_CAMIONES = "CleanClan_Camiones"
 TABLA_LECTURAS = "CleanClan_Lecturas"
 TABLA_INCIDENCIAS = "CleanClan_Incidencias"
 
-# Helper para convertir objetos Decimal de DynamoDB a float/int al imprimir en JSON
+# Usaremos helper para convertir objetos Decimal de DynamoDB a float/int al imprimir en JSON
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Decimal):
             return int(obj) if obj % 1 == 0 else float(obj)
         return super(DecimalEncoder, self).default(obj)
 
+# Crearemos una función que convertirá los datos en json
 def formatear_json(datos):
     return json.dumps(datos, indent=4, ensure_ascii=False, cls=DecimalEncoder)
 
-# A contuniación crearemos las 3 tablas(Sin índice y con índice local/global)
+# Crearemos las 3 tablas(Sin índice y con índice local/global)
 def crear_tablas():
     tablas_existentes = dynamodb_client.list_tables()['TableNames']
 
@@ -46,8 +48,8 @@ def crear_tablas():
     else:
         print(f"La tabla {TABLA_CAMIONES} ya existe.")
 
-    # 2. Tabla CON Índice Local (LSI)
-    # PK: id_sensor | SK: timestamp | LSI: LSI_NivelLlenado (id_sensor + porcentaje_lleno)
+    # 2. Tabla CON Índice Local
+    # PK: id_sensor, SK: timestamp, LSI: LSI_NivelLlenado (id_sensor + porcentaje_lleno)
     if TABLA_LECTURAS not in tablas_existentes:
         print(f"Creando tabla {TABLA_LECTURAS} (con Índice Local LSI)...")
         table2 = dynamodb_resource.create_table(
@@ -78,8 +80,8 @@ def crear_tablas():
     else:
         print(f"La tabla {TABLA_LECTURAS} ya existe.")
 
-    # 3. Tabla CON Índice Global (GSI)
-    # PK: id_incidencia | GSI: GSI_EstadoResolucion (estado_resolucion)
+    # 3. Tabla CON Índice Global
+    # PK: id_incidencia,, GSI: GSI_EstadoResolucion (estado_resolucion)
     if TABLA_INCIDENCIAS not in tablas_existentes:
         print(f"Creando tabla {TABLA_INCIDENCIAS} (con Índice Global GSI)...")
         table3 = dynamodb_resource.create_table(
@@ -105,7 +107,7 @@ def crear_tablas():
     else:
         print(f"La tabla {TABLA_INCIDENCIAS} ya existe.")
 
-# Con lkas tablas ya creadas, insertaremos 3 registros en cada una
+# Con lkas tablas ya creadas insertaremos 3 registros en cada una
 def insertar_registros():
     t_camiones = dynamodb_resource.Table(TABLA_CAMIONES)
     t_lecturas = dynamodb_resource.Table(TABLA_LECTURAS)
@@ -154,7 +156,7 @@ def obtener_un_registro():
 
 # Actualizaremos un registro de cada tabla
 def actualizar_registros():
-    # Actualizar combustible del camión 1234-BCD
+    # Actualizamos el combustible del camión 1234-BCD
     r1 = dynamodb_resource.Table(TABLA_CAMIONES).update_item(
         Key={'matricula': '1234-BCD'},
         UpdateExpression="SET combustible_pct = :val",

@@ -75,14 +75,54 @@ def poblar_datos_prueba():
         # Verificamos si ya hay empleados
         cursor.execute("SELECT COUNT(*) FROM empleados;")
         if cursor.fetchone()[0] == 0:
-            cursor.execute("INSERT INTO barrios (nombre, poblacion, superficie_km2) VALUES ('Centro', 35000, 4.5), ('Triana', 28000, 3.2);")
-            cursor.execute("INSERT INTO empleados (nombre, apellido, dni, cargo, fecha_contrato) VALUES ('Carlos', 'Gómez', '12345678A', 'Conductor', '2022-01-15'), ('Lucía', 'Martín', '87654321B', 'Operario', '2023-03-10');")
-            cursor.execute("INSERT INTO tipo_residuos (nombre, color_contenedor) VALUES ('Orgánico', 'Marrón'), ('Envases', 'Amarillo');")
-            cursor.execute("INSERT INTO camiones (matricula, modelo, capacidad_toneladas, estado) VALUES ('1234-BCD', 'Volvo FE', 12.50, 'Operativo');")
-            cursor.execute("INSERT INTO puntos_recogida (id_barrio, direccion, latitud, longitud) VALUES (1, 'Calle Sierpes 10', 37.3886, -5.9953);")
-            cursor.execute("INSERT INTO contenedores (id_punto, id_tipo_residuo, capacidad, fecha_instalacion) VALUES (1, 1, 1000, '2023-01-01');")
-            cursor.execute("INSERT INTO sensores_iot (id_contenedor, modelo, porcentaje_bateria, estado) VALUES (1, 'Sensor-v1', 85, 'Activo');")
-            cursor.execute("INSERT INTO lecturas_sensores (id_sensor, porcentaje_lleno, temperatura, timestamp_lectura) VALUES (1, 92, 24.5, NOW());")
+            cursor.execute("""
+                INSERT INTO barrios (nombre, poblacion, superficie_km2) VALUES 
+                ('Centro', 35000, 4.50), 
+                ('Triana', 28000, 3.20),
+                ('Nervión', 42000, 5.10);
+            """)
+            cursor.execute("""
+                INSERT INTO empleados (nombre, apellido, dni, cargo, fecha_contrato) VALUES 
+                ('Carlos', 'Gómez', '12345678A', 'Conductor', '2022-01-15'), 
+                ('Lucía', 'Martín', '87654321B', 'Operario', '2023-03-10'),
+                ('Javier', 'Ruiz', '11223344C', 'Inspector', '2021-09-01');
+            """)
+            cursor.execute("""
+                INSERT INTO tipo_residuos (nombre, color_contenedor) VALUES 
+                ('Orgánico', 'Marrón'), 
+                ('Envases', 'Amarillo'),
+                ('Vidrio', 'Verde');
+            """)
+            cursor.execute("""
+                INSERT INTO camiones (matricula, modelo, capacidad_toneladas, estado) VALUES 
+                ('1234-BCD', 'Volvo FE', 12.50, 'Operativo'),
+                ('5678-FGH', 'Mercedes Econic', 14.00, 'Operativo'),
+                ('9012-JKL', 'Iveco Eurocargo', 10.50, 'Taller');
+            """)
+            cursor.execute("""
+                INSERT INTO puntos_recogida (id_barrio, direccion, latitud, longitud) VALUES 
+                (1, 'Calle Sierpes 10', 37.3886, -5.9953),
+                (2, 'Calle San Jacinto 45', 37.3824, -6.0072),
+                (3, 'Avenida Eduardo Dato 22', 37.3841, -5.9735);
+            """)
+            cursor.execute("""
+                INSERT INTO contenedores (id_punto, id_tipo_residuo, capacidad, fecha_instalacion) VALUES 
+                (1, 1, 1000, '2023-01-01'),
+                (2, 2, 1200, '2023-04-15'),
+                (3, 3, 800, '2023-06-20');
+            """)
+            cursor.execute("""
+                INSERT INTO sensores_iot (id_contenedor, modelo, porcentaje_bateria, estado) VALUES 
+                (1, 'Sensor-v1', 85, 'Activo'),
+                (2, 'Sensor-v2', 62, 'Activo'),
+                (3, 'Sensor-v1', 18, 'Batería Baja');
+            """)
+            cursor.execute("""
+                INSERT INTO lecturas_sensores (id_sensor, porcentaje_lleno, temperatura, timestamp_lectura) VALUES 
+                (1, 92, 24.5, NOW()),
+                (2, 88, 22.1, NOW()),
+                (3, 34, 21.0, NOW());
+            """)
             conn.commit()
             print("Datos iniciales de prueba insertados en RDS.")
         else:
