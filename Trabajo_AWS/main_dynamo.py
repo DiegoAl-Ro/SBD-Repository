@@ -1,5 +1,9 @@
+# Este script ejecutará todas las funciones de gestion_dynamo.py y confirmará su éxito
+
+# Import necesario del script con las funciones
 import gestion_dynamo as dynamo
 
+# Función principal para ejecutar todo encadenado
 def main():
     print("\n-- EJECUTANDO ESTRUCTURA DYNAMO PARA AWS --\n")
 

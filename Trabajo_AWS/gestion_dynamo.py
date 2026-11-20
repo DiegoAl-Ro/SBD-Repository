@@ -1,3 +1,5 @@
+# Este script creará las 3 tablas en dynamo con los ajustes pedidos
+
 # Imports necesarios
 import os
 import json
@@ -7,7 +9,7 @@ from boto3.dynamodb.conditions import Key, Attr
 from dotenv import load_dotenv
 
 # Cargamos el load
-load_dotenv
+load_dotenv()
 
 # Inicializamos los recursos y clientes de DynamoDB
 # boto3 lee automáticamente AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN y AWS_DEFAULT_REGION

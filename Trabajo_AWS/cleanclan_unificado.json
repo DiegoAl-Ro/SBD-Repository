@@ -1,0 +1,98 @@
+{
+    "proyecto": "CleanClan - Arquitectura Híbrida AWS",
+    "flota_camiones": [
+        {
+            "id_camion": 1,
+            "matricula": "1234-BCD",
+            "modelo": "Volvo FE",
+            "capacidad_toneladas": 12.5,
+            "combustible_pct": 95,
+            "estado_actual": "Operativo"
+        },
+        {
+            "id_camion": 2,
+            "matricula": "5678-FGH",
+            "modelo": "Mercedes Econic",
+            "capacidad_toneladas": 14.0,
+            "combustible_pct": 35,
+            "estado_actual": "Operativo"
+        },
+        {
+            "id_camion": 3,
+            "matricula": "9012-JKL",
+            "modelo": "Iveco Eurocargo",
+            "capacidad_toneladas": 10.5,
+            "combustible_pct": 15,
+            "estado_actual": "Taller"
+        }
+    ],
+    "red_sensores_iot": [
+        {
+            "id_sensor": 1,
+            "modelo": "Sensor-v1",
+            "ubicacion": "Calle Sierpes 10 (Centro)",
+            "porcentaje_bateria": 85.0,
+            "historial_lecturas_dynamo": [
+                {
+                    "temperatura": 24.5,
+                    "porcentaje_lleno": 92,
+                    "id_sensor": 1,
+                    "timestamp": "2026-11-16T08:00:00"
+                },
+                {
+                    "id_sensor": 1,
+                    "porcentaje_lleno": 60,
+                    "temperatura": 26,
+                    "timestamp": "2026-11-16T12:00:00"
+                }
+            ],
+            "incidencias_dynamo": [
+                {
+                    "prioridad": "Alta",
+                    "tipo": "Contenedor Lleno",
+                    "id_incidencia": "INC-001",
+                    "id_sensor": 1,
+                    "estado_resolucion": "Pendiente"
+                },
+                {
+                    "prioridad": "Baja",
+                    "tipo": "Mal Olor",
+                    "id_incidencia": "INC-003",
+                    "id_sensor": 1,
+                    "estado_resolucion": "Resuelto"
+                }
+            ]
+        },
+        {
+            "id_sensor": 2,
+            "modelo": "Sensor-v2",
+            "ubicacion": "Calle San Jacinto 45 (Triana)",
+            "porcentaje_bateria": 62.0,
+            "historial_lecturas_dynamo": [
+                {
+                    "porcentaje_lleno": 88,
+                    "temperatura": 22.1,
+                    "id_sensor": 2,
+                    "timestamp": "2026-11-16T10:30:00"
+                }
+            ],
+            "incidencias_dynamo": [
+                {
+                    "estado_resolucion": "Resuelto",
+                    "id_incidencia": "INC-002",
+                    "id_sensor": 2,
+                    "prioridad": "Media",
+                    "tipo": "Tapa Rota"
+                }
+            ]
+        },
+        {
+            "id_sensor": 3,
+            "modelo": "Sensor-v1",
+            "ubicacion": "Avenida Eduardo Dato 22 (Nervión)",
+            "porcentaje_bateria": 18.0,
+            "historial_lecturas_dynamo": [],
+            "incidencias_dynamo": []
+        }
+    ]
+}
